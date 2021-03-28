@@ -175,7 +175,7 @@ $(function () {
                 inherit_select_classes: true, //是否继承原下拉框的样式类，此处设为继承
                 /*placeholder_text_single: '',*/ //单选选择框的默认提示信息，当选项为空时会显示。如果原下拉框设置了data-placeholder，会覆盖这里的值。
 
-                max_shown_results: 5, //下拉框最大显示选项数量
+                max_shown_results: 100, //下拉框最大显示选项数量
                 display_disabled_options: false,
                 single_backstroke_delete: false, //false表示按两次删除键才能删除选项，true表示按一次删除键即可删除
                 case_sensitive_search: false, //搜索大小写敏感。此处设为不敏感
