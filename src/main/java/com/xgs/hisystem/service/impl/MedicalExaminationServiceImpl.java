@@ -21,6 +21,7 @@ import javax.persistence.criteria.Predicate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * @author xgs
@@ -73,20 +74,23 @@ public class MedicalExaminationServiceImpl implements IMedicalExaminationService
             return query.where(filter.toArray(new Predicate[filter.size()])).getRestriction();
         });
 
-        if (outpatientQueues == null || outpatientQueues.isEmpty()) {
+        if (outpatientQueues.isEmpty()) {
             rspVO.setMessage("未查询到挂号信息，请与患者核对挂号就诊医生！");
             return rspVO;
         }
-
-        if (outpatientQueues.size() == 1) {
-            BeanUtils.copyProperties(patientInfor, rspVO);
-            rspVO.setAge(DateUtil.getAge(patientInfor.getBirthday()));
-            rspVO.setQueueId(outpatientQueues.get(0).getId());
-        } else {
+        if (outpatientQueues.size() != 1) {
             rspVO.setMessage("队列信息异常，请联系管理员！");
             return rspVO;
         }
-
+        OutpatientQueueEntity queueEntity = outpatientQueues.get(0);
+        //检查科室
+        String deptCode = queueEntity.getRegister().getDepartment();
+        if (!HisConstants.DEPT.MEDICAL_EXAM_CODE.equals(deptCode)) {
+            return rspVO;
+        }
+        BeanUtils.copyProperties(patientInfor, rspVO);
+        rspVO.setAge(DateUtil.getAge(patientInfor.getBirthday()));
+        rspVO.setQueueId(outpatientQueues.get(0).getId());
         return rspVO;
     }
 

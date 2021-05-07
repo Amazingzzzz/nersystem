@@ -88,4 +88,12 @@ public final class HisConstants {
         public static final int NORMAL = 1;
     }
 
+    public class DEPT{
+
+        /**
+         * 体检科编码
+         **/
+        public static final String MEDICAL_EXAM_CODE="12";
+    }
+
 }

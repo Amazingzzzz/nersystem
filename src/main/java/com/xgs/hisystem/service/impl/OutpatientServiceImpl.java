@@ -88,7 +88,7 @@ public class OutpatientServiceImpl implements IOutpatientService {
             return query.where(filter.toArray(new Predicate[filter.size()])).getRestriction();
         });
 
-        if (outpatientQueues == null || outpatientQueues.isEmpty()) {
+        if (outpatientQueues.isEmpty()) {
             rspVO.setMessage("未查询到挂号信息，请与患者核对挂号就诊医生！");
             return rspVO;
         }
