@@ -171,6 +171,11 @@ public class PageController {
         return "outpatient/outpatient";
     }
 
+    @GetMapping(value = "/ner")
+    public String ner() {
+        return "ner/ner";
+    }
+
 
     @GetMapping(value = "/storageManage")
     public String storageManage() {

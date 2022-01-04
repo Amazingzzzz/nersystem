@@ -1,24 +1,24 @@
 server:
-  port: 8090
+  port: 8080
 #  servlet:
 #    context-path: /hisystem
 spring:
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/hisystem?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/hisystem?useSSL=false&useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
     username: root
-    password: 123456
-  jpa:
-    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
-    generate-ddl: true
-    hibernate:
-      ddl-auto: update
-    show-sql: false
+    password: 123456789Aa
   mail:
     default-encoding: UTF-8
     host: smtp.qq.com
     password:
-    username: 1208585122@qq.com
+    username: 1034528234@qq.com
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    show-sql: false
   thymeleaf:
     cache: false
     check-template-location: true
@@ -34,3 +34,5 @@ spring:
       enabled: true
     restart:
       enabled: true
+shiro:
+  enabled: false

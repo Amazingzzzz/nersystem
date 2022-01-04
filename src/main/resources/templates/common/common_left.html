@@ -43,6 +43,22 @@
                 </div>
             </div>
         </li>
+         <!--电子病历-->
+        <li class="nav-item" shiro:hasAnyRoles="admin,register">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#ner"
+               aria-expanded="true" aria-controls="collapseTwo">
+                <img class="png" th:src="@{/images/icon/register.png}" src="">
+                <span>电子病历</span>
+            </a>
+            <div id="ner" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">construct:</h6>
+                    <a class="collapse-item" th:href="@{/ner}"><span
+                            class="glyphicon glyphicon-leaf"></span>结构化电子病历生成</a>
+<!--                    <a class="collapse-item" th:href="@{/registerRecord}">挂号记录</a>-->
+                </div>
+            </div>
+        </li>
 
         <!-- Nav Item - Utilities Collapse Menu -->
         <li class="nav-item" shiro:hasAnyRoles="admin,mdoctor">

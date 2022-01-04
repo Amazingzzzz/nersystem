@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <head th:replace="common/common_css :: css(~{::link})">
+    </head>
+    <title>结构化电子病历</title>
+    <link rel="stylesheet" type="text/css" th:href="@{css/mcss/mcss_medicalExamination.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{css/mcss/mcss_notice.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/preloader.css}">
+    <script type="text/javascript" src = "https://d3js.org/d3.v4.min.js"></script>
+</head>
+<body>
+
+<div id="preloader">
+    <div id="preloader-inner"></div>
+</div>
+<div id="wrapper">
+    <div th:replace="common/common_left :: left"></div>
+
+    <div id="content-wrapper" class="d-flex flex-column content-wrapper">
+        <div id="content">
+            <div th:replace="common/common_head :: head"></div>
+
+            <!--正文-->
+            <div>
+                <div class="card shadow mb-4" style="margin-left: 2.5%;height: 818px;">
+
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">电子病历</h6>
+                    </div>
+                    <div class="card-body">
+                        <div style=" margin-left: 1%;margin-right: 1%">
+                            <div class="textbox">
+                                请输入病历文本：
+                                <textarea type="text" id="nertextarea"></textarea>
+
+                                <div class="cardId-search">
+                                    <button class="btn btn-success" onclick="getConstructInfo()">生成</button>
+                                </div>
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">结构化结果</h6>
+                                </div>
+                                <div class="textbox_2" id="nerresult">
+                                </div>
+                            </div>
+
+<!--                            <div class="card mycard">-->
+
+<!--                                <div style="margin-left: 5%">-->
+<!--                                    <div class="textbox">-->
+<!--                                        请输入病历文本：-->
+<!--                                        <textarea type="text" id="nertextarea"></textarea>-->
+
+<!--                                        <div class="cardId-search">-->
+<!--                                            <button class="btn btn-success" onclick="getConstructInfo()">生成</button>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+
+
+<!--                                <div class="card-header py-3">-->
+<!--                                    <h6 class="m-0 font-weight-bold text-primary">结构化结果</h6>-->
+<!--                                </div>-->
+
+<!--                                <div class="textbox_2" id="nerresult">-->
+<!--                                    &lt;!&ndash;                                    体温<input type="text" id="bodyTemperature" style="width: 70px">℃&emsp;&ndash;&gt;-->
+<!--                                    &lt;!&ndash;                                    脉搏<input type="text" id="pulse" style="width: 70px">次/分&emsp;&ndash;&gt;-->
+<!--                                    &lt;!&ndash;                                    心率<input type="text" id="heartRate" style="width: 70px">次/分&emsp;&ndash;&gt;-->
+<!--                                    &lt;!&ndash;                                    血压<input type="text" id="bloodPressure" style="width: 70px">mmHg&ndash;&gt;-->
+<!--                                    &lt;!&ndash;                                    <br><br><br><br>&ndash;&gt;-->
+<!--                                    &lt;!&ndash;                                    处方号<input type="text" id="prescriptionNum" style="width: 170px">&ndash;&gt;-->
+<!--                                    &lt;!&ndash;                                    <div class="my-tooltip">&ndash;&gt;-->
+<!--                                    &lt;!&ndash;                                        <img class="png" th:src="@{/images/icon/notice.png}">&ndash;&gt;-->
+<!--                                    &lt;!&ndash;                                        <div class="tooltip">该处方号为协助门诊提供！正常流程无需填写！</div>&ndash;&gt;-->
+<!--                                    &lt;!&ndash;                                    </div>&ndash;&gt;-->
+
+<!--                                    &lt;!&ndash;                                    费用<input type="text" id="examinationCost" style="width: 70px">元&ndash;&gt;-->
+<!--                                </div>-->
+
+<!--                            </div>-->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<div>
+    <div th:replace="common/common_js :: js(~{::script})"></div>
+    <script type="text/javascript" th:src="@{/js/jquery.preloader.min.js}"></script>
+    <script th:src="@{/sb-admin-2/bootstrap/bootstrap-table.min.js}"></script>
+    <script th:src="@{/sb-admin-2/bootstrap/bootstrap-table-zh-CN.js}"></script>
+    <script type="text/javascript" th:src="@{/js/mjs/mjs_medicalExamination.js}"></script>
+</div>
+</body>
+<script type="text/javascript">
+    function getConstructInfo() {
+        var text = document.getElementById('nertextarea').value
+        $.ajax({
+            url: "/ner/getConstructInfo",
+            type: "post",
+            data:{"nerText":text},
+            dataType: "text",
+            headers:{
+                "Accept": "*/*"
+            },
+            success: function (result) {
+                console.log(result)
+                document.getElementById("nerresult").innerText = result
+                alert("请求成功")
+                // $('#nerresult').html(result)
+            },
+            error: function (error) {
+                console.log(error)
+            }
+        })
+    }
+</script>
+</html>

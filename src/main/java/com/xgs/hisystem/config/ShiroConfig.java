@@ -1,6 +1,6 @@
 package com.xgs.hisystem.config;
 
-import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
+//import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 import com.xgs.hisystem.realm.MyRealm;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.mgt.SecurityManager;
@@ -78,7 +78,7 @@ public class ShiroConfig {
 
     /**
      * 自定义Realm
-     * 
+     *
      * @return
      */
     @Bean
@@ -128,10 +128,10 @@ public class ShiroConfig {
         return authorizationAttributeSourceAdvisor;
     }
 
-    @Bean
-    public ShiroDialect shiroDialect() {
-        return new ShiroDialect();
-    }
+//    @Bean
+//    public ShiroDialect shiroDialect() {
+//        return new ShiroDialect();
+//    }
     //
     // @Bean
     // public HandlerExceptionResolver solver(){
